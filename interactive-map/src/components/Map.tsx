@@ -11,7 +11,7 @@ type WaveDataType = {
   maxWaveHeight: number;
 };
 
-function WaveHeightMap() {
+const WaveHeightMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [waveData, setWaveData] = useState<WaveDataType | null>(null);
@@ -88,27 +88,29 @@ function WaveHeightMap() {
       <div className={styles.map} ref={mapContainer} />
 
       <div className={styles.results}>
-        {loading ? (
-          <p>Loading wave data...</p>
-        ) : waveData ? (
-          <p>
-            <strong>Location:</strong> {waveData.latitude.toFixed(3)},{' '}
-            {waveData.longitude.toFixed(3)}
-            <br />
-            <strong>Maximum wave height:</strong>{' '}
-            {waveData.maxWaveHeight.toFixed(2)} meters
-            <br />
-          </p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <p>
-            Click on the map to see the maximum wave height for that location.
-          </p>
-        )}
+        <p>
+          {loading ? (
+            <>Loading wave data...</>
+          ) : waveData ? (
+            <>
+              <strong>Location:</strong> {waveData.latitude.toFixed(3)},{' '}
+              {waveData.longitude.toFixed(3)}
+              <br />
+              <strong>Maximum wave height:</strong>{' '}
+              {waveData.maxWaveHeight.toFixed(2)} meters
+              <br />
+            </>
+          ) : error ? (
+            <>{error}</>
+          ) : (
+            <>
+              Click on the map to see the maximum wave height for that location.
+            </>
+          )}
+        </p>
       </div>
     </div>
   );
-}
+};
 
 export default WaveHeightMap;

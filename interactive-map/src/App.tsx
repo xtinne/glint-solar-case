@@ -1,11 +1,7 @@
 import WaveHeightMap from './components/Map';
 
-function App() {
-  return (
-    <>
-      <WaveHeightMap />
-    </>
-  );
-}
+const App = () => {
+  return <WaveHeightMap />;
+};
 
 export default App;
